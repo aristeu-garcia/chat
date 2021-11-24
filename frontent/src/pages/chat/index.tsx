@@ -1,6 +1,7 @@
 import React, { useState } from "react";
+import { AiOutlineSend, AiOutlineCaretDown } from "react-icons/ai";
+import { FaHome } from 'react-icons/fa';
 import { Container } from "./styles";
-import { AiOutlineSend } from "react-icons/ai";
 const Chat: React.FC = () => {
   const [message, setMessage] = useState<string>("");
   const [messages, setMessages] = useState<string[]>([]);
@@ -16,7 +17,12 @@ const Chat: React.FC = () => {
   return (
     <Container>
       <div className="container-chat">
-        <div className="top-bar"></div>
+        <div className="top-bar">
+          <div><FaHome size={20} /></div>
+
+          <span>Home</span>
+          <AiOutlineCaretDown size={20} />
+        </div>
         <div className="container-messages">
           <div className="message left sb2">Tudo bem?</div>
           <div className="message left sb2">Como vai?</div>

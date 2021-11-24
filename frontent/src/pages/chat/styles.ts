@@ -11,6 +11,35 @@ export const Container = styled.div`
     width: 30%;
     height: 100%;
     min-width: 320px;
+    .top-bar{
+      height: 50px;
+      /* background-color: blue; */
+      display: flex;
+      text-align: center;
+      padding-left: 10px ;
+      padding-right: 10px;
+      align-items: center;
+      justify-content: space-between;
+      color: #2a2a2a;
+      font-weight: 800;
+      svg{
+        fill: #d9dbea;
+      }
+      div{
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        /* border: 1px solid red; */
+        height: 30px;
+        width: 30px;
+        background-color: #4181f6;
+        border-radius: 10px;
+        svg{
+        fill:#ffffff;
+      }
+    }
+      
+    }
     .down-bar {
       display: flex;
       border-radius: 20px;
@@ -18,6 +47,9 @@ export const Container = styled.div`
       justify-content: space-evenly;
       position: absolute;
       bottom: 0;
+      button{
+        border:none;
+      }
       /* background: #f1f1f2; */
       background-color: lightcyan;
       width: 30%;
@@ -34,33 +66,35 @@ export const Container = styled.div`
       }
     }
     .container-messages {
-      background: pink;
-      top: 70px;
+      /* background: pink; */
+      top: 50px;
       bottom: 70px;
       width: 30%;
-
+      padding-right: 5px;
+      padding-left:5px ;
       min-width: 320px;
       position: absolute;
       display: flex;
       flex-direction: column;
+      overflow-y: auto;
 
       .message {
         width: 46%;
         margin: 5px auto;
-        background: #00bfb6;
+        background: #4280ff;
         padding: 10px;
         color: #fff;
         position: relative;
-        border-radius: 10px 0px 10px 10px;
+      
         &.sb1:before {
           content: "";
           border-radius: 0px 5px 5px 0;
           width: 0px;
           height: 0px;
           position: absolute;
-          border-left: 5px solid #00bfb6;
+          border-left: 5px solid #4280ff;
           border-right: 5px solid transparent;
-          border-top: 5px solid #00bfb6;
+          border-top: 5px solid #4280ff;
           border-bottom: 5px solid transparent;
           right: -10px;
           top: 0px;
@@ -71,8 +105,8 @@ export const Container = styled.div`
           height: 0px;
           position: absolute;
           border-left: 5px solid transparent;
-          border-right: 5px solid #00bfb6;
-          border-top: 5px solid #00bfb6;
+          border-right: 5px solid #30ba83;
+          border-top: 5px solid #30ba83;
           border-bottom: 5px solid transparent;
           left: -10px;
           top: 0px;
@@ -80,10 +114,14 @@ export const Container = styled.div`
 
         &.left {
           margin-left: 10px;
+          background-color: #30ba83;
+          border-radius: 0px 10px 10px 10px;
+
         }
         &.right {
           align-self: flex-end;
           margin-right: 10px;
+          border-radius: 10px 0px 10px 10px;
         }
       }
     }
