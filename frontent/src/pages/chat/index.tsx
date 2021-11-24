@@ -1,7 +1,9 @@
 import React, { useState } from "react";
 import { AiOutlineSend, AiOutlineCaretDown } from "react-icons/ai";
-import { FaHome } from 'react-icons/fa';
+import { FaHome } from "react-icons/fa";
 import { Container } from "./styles";
+import Button from "../../components/atoms/Button";
+import Input from "../../components/atoms/Input";
 const Chat: React.FC = () => {
   const [message, setMessage] = useState<string>("");
   const [messages, setMessages] = useState<string[]>([]);
@@ -18,7 +20,9 @@ const Chat: React.FC = () => {
     <Container>
       <div className="container-chat">
         <div className="top-bar">
-          <div><FaHome size={20} /></div>
+          <div>
+            <FaHome size={20} />
+          </div>
 
           <span>Home</span>
           <AiOutlineCaretDown size={20} />
@@ -35,17 +39,17 @@ const Chat: React.FC = () => {
           ))}
         </div>
         <div className="down-bar">
-          <input
+          <Input
             placeholder="Digite a mensagem..."
             onChange={(e) => setMessage(e.target.value)}
           />
-          <button
+          <Button
             onClick={() => {
               handleMessage(message);
             }}
           >
             <AiOutlineSend size={28} />
-          </button>
+          </Button>
         </div>
       </div>
     </Container>
