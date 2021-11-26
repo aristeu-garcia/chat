@@ -4,6 +4,7 @@ import { FaHome } from "react-icons/fa";
 import { Container } from "./styles";
 import Button from "../../components/atoms/Button";
 import Input from "../../components/atoms/Input";
+import Message from "../../components/molecules/Message";
 const Chat: React.FC = () => {
   const [message, setMessage] = useState<string>("");
   const [messages, setMessages] = useState<string[]>([]);
@@ -28,7 +29,10 @@ const Chat: React.FC = () => {
           <AiOutlineCaretDown size={20} />
         </div>
         <div className="container-messages">
-          <div className="message left sb2">Tudo bem?</div>
+          {/* <Message user_id={1} text={"Olá eu sou aristeu"}></Message>
+          <Message user_id={2} text={"Olá eu sou fulano"}></Message> */}
+
+          {/* <div className="message left sb2">Tudo bem?</div>
           <div className="message left sb2">Como vai?</div>
           {messages.map((message, index) => (
             <>
@@ -36,7 +40,7 @@ const Chat: React.FC = () => {
                 {message}
               </div>
             </>
-          ))}
+          ))} */}
         </div>
         <div className="down-bar">
           <Input
