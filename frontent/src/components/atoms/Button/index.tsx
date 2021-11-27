@@ -2,8 +2,18 @@ import React, { ButtonHTMLAttributes } from "react";
 import { Container } from "./styles";
 type ButtonProps = ButtonHTMLAttributes<HTMLButtonElement>;
 
-const Button: React.FC<ButtonProps> = ({ children, ...rest }) => (
-  <Container type="button" {...rest}>
+interface IButton extends ButtonProps {
+  bg?: string;
+  borderRadius?: string;
+}
+
+const Button: React.FC<IButton> = ({
+  children,
+  bg,
+  borderRadius,
+  ...rest
+}: IButton) => (
+  <Container type="button" bg={bg} borderRadius={borderRadius} {...rest}>
     {children}
   </Container>
 );

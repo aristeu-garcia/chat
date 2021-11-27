@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import Select from "react-select";
+import Select, { Props } from "react-select";
 import { Container } from "./styles";
 
 interface Option {
@@ -7,13 +7,25 @@ interface Option {
   label: string;
 }
 
-interface Options {
+interface Options extends Props {
   options: Option[];
 }
 
-const DropDown: React.FC<Options>= ({ options }) => (
+const CustomStyle = {
+  option: (base: any, state: { isSelected: boolean }) => ({
+    ...base,
+    backgroundColor: state.isSelected ? "#4683ff" : "#1c2125",
+  }),
+};
+
+const DropDown: React.FC<Options> = ({ options, ...rest }) => (
   <Container>
-    <Select options={options} />
+    <Select
+      placeholder="Selecione a sala"
+      options={options}
+      {...rest}
+      styles={CustomStyle}
+    />
   </Container>
 );
 export default DropDown;

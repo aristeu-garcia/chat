@@ -9,7 +9,7 @@ const Router: React.FC = () => {
     <BrowserRouter>
       <Routes>
         <Route element={<Room />} path="/" />
-        <Route element={<Chat />} path="/chat" />
+        <Route element={<Chat />} path="/:room/:user" />
       </Routes>
     </BrowserRouter>
   );
