@@ -1,12 +1,10 @@
 import React from "react";
 import Global from "./styles/global";
-import Chat from "./pages/chat";
-
+import Router from "./routes";
 const App: React.FC = () => {
-
   return (
     <>
-      <Chat></Chat>
+      <Router />
       <Global />
     </>
   );
