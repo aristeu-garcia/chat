@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { Container } from "./styles";
 import DropDown from "../../atoms/Select";
 import Input from "../../atoms/Input";
@@ -6,7 +6,10 @@ import Button from "../../atoms/Button";
 import { AiOutlineSend } from "react-icons/ai";
 import logo from "../../../assets/logo.svg";
 import { Link } from "react-router-dom";
-
+import socketIOClient from "socket.io-client";
+import { setMessages } from "../../../global/Messages";
+import { appSocket } from "../../../api/socket";
+import { IMessage } from "../../../interfaces/IMessage";
 const Form: React.FC = () => {
   interface IJoin {
     user: string;
@@ -17,8 +20,26 @@ const Form: React.FC = () => {
     label: string;
   }
 
+  function handleSubmit() {
+    appSocket.emit(
+      "selected_room",
+      {
+        room,
+        user,
+      },
+      (response: any) => {
+        console.log("test", response.messages);
+
+        setMessages(response.messages);
+        localStorage.setItem("@auth/user", response.user);
+      }
+    );
+    // console.log(messages);
+  }
+
   const [user, setUser] = useState<string>("");
   const [room, setRoom] = useState<string>("");
+
   return (
     <Container>
       <img src={logo} width="100px" height="100px" alt="bg"></img>
@@ -39,7 +60,7 @@ const Form: React.FC = () => {
         }}
       />
       <Button bg="#2ebb83" borderRadius="5px">
-        <Link to={`/${room}/${user}`}>
+        <Link to={`/${room}/${user}`} onClick={handleSubmit}>
           <AiOutlineSend size={22} color="#FFFF" />
         </Link>
       </Button>

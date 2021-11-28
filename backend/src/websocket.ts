@@ -1,4 +1,5 @@
 import { io } from "./http";
+import { Socket } from "socket.io";
 
 interface RoomUser {
   socket_id: string;
@@ -13,10 +14,37 @@ interface Message {
 }
 
 const users: RoomUser[] = [];
-const messages: Message[] = [];
+const messages: Message[] = [
+  {
+    room: "react",
+    username: "Aristeu",
+    text: "messagem",
+    createdAt: new Date(),
+  },
+  {
+    room: "react",
+    username: "Aristeu",
+    text: "messagem",
+    createdAt: new Date(),
+  },
+  {
+    room: "nodets",
+    username: "Aristeu",
+    text: "messagem",
+    createdAt: new Date(),
+  },
+  {
+    room: "nodets",
+    username: "Aristeu",
+    text: "messagem",
+    createdAt: new Date(),
+  },
+];
 
-io.on("connection", (socket) => {
+io.on("connection", (socket: Socket) => {
+  console.log("> Conected on server");
   socket.on("selected_room", (data, callback) => {
+    console.log("> The user", data.user, "joy room", data.room);
     socket.join(data.room);
 
     const userInRoom = users.find((user) => {
@@ -33,7 +61,12 @@ io.on("connection", (socket) => {
       });
     }
     const messagesRoom = getMessagesRoom(data.room);
-    callback(messagesRoom);
+
+    callback({
+      messages: messagesRoom,
+      user: data.user,
+      room: data.room,
+    });
   });
 
   socket.on("message", (data) => {
@@ -49,8 +82,10 @@ io.on("connection", (socket) => {
 });
 
 function getMessagesRoom(room: string) {
+
   const messagesRoom = messages.filter((message) => {
-    message.room === room;
+    return message.room === room;
   });
+
   return messagesRoom;
 }

@@ -1,16 +1,18 @@
 import React, { useState } from "react";
 import { Container } from "./styles";
 import Message from "../../molecules/Message";
+import { IMessage } from "../../../interfaces/IMessage";
+import { appSocket } from "../../../api/socket";
 const ListMessages: React.FC = () => {
-
-  const [messages, setMessages] = useState([])
+  // async function fetchMessages() {
+  //   await appSocket.emit
+  // }
+  const [messages, setMessages] = useState<IMessage[]>([]);
   return (
     <Container>
-      {messages.map(
-        (msg: { text: string }, index: React.Key | null | undefined) => (
-          <Message key={index} text={msg.text} user_id={1} />
-        )
-      )}
+      {messages.map((msg: IMessage, index: React.Key | null | undefined) => (
+        <Message key={index} text={msg.text} user={msg.user} />
+      ))}
     </Container>
   );
 };

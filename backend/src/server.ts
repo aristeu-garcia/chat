@@ -1,5 +1,7 @@
 import { serverHttp } from "./http";
-import "./websocket"
+import "./websocket";
+
+
 serverHttp.listen(3333, () => {
   console.log("backend is runing");
 });

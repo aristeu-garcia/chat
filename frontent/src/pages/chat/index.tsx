@@ -5,10 +5,13 @@ import { Container } from "./styles";
 import Button from "../../components/atoms/Button";
 import Input from "../../components/atoms/Input";
 import Message from "../../components/molecules/Message";
+import { getMessages } from "../../global/Messages";
+import { useParams } from "react-router-dom";
 const Chat: React.FC = () => {
   const [message, setMessage] = useState<string>("");
   const [messages, setMessages] = useState<string[]>([]);
-
+  let { room, user } = useParams();
+  console.log("messages", getMessages());
   function handleMessage(message: string) {
     setMessages((messages) => [...messages, message]);
     return (
