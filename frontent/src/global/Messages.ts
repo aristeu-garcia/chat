@@ -1,16 +1,32 @@
 import { IMessage } from "../interfaces/IMessage";
-let messages = [] as IMessage[];
+export class Messages {
+  public static messages = [] as IMessage[];
 
-function getMessages() {
-  return messages;
+  public static addMessages(message: IMessage) {
+    this.messages.push(message);
+  }
+
+  public static getMessages() {
+    return this.messages;
+  }
+
+  public static setMessages(newMessages: IMessage[]): void {
+    this.messages = newMessages;
+  }
 }
 
-function addMessages(message: IMessage) {
-  messages.push(message);
-}
+// import { IMessage } from "../interfaces/IMessage";
+// let messages: IMessage[];
 
-function setMessages(newMessages: IMessage[]) {
-  messages = newMessages;
-}
+// function getMessages() {
+//   return messages;
 
-export { getMessages, setMessages, addMessages };
+// function addMessages(message: IMessage) {
+//   messages.push(message);
+// }
+
+// function setMessages(newMessages: IMessage[]) {
+//   messages = newMessages;
+// }
+
+// export { getMessages, setMessages, addMessages, messages };

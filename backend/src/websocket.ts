@@ -78,7 +78,9 @@ io.on("connection", (socket: Socket) => {
     };
     messages.push(message);
     io.to(data.room).emit("message");
+    
   });
+  
 });
 
 function getMessagesRoom(room: string) {

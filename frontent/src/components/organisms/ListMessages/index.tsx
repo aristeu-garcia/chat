@@ -10,9 +10,14 @@ const ListMessages: React.FC = () => {
   const [messages, setMessages] = useState<IMessage[]>([]);
   return (
     <Container>
-      {messages.map((msg: IMessage, index: React.Key | null | undefined) => (
-        <Message key={index} text={msg.text} user={msg.user} />
-      ))}
+      {messages.map(
+        (
+          msg: IMessage,
+          index: React.Key | null | undefined
+        ) => (
+          <Message key={index} text={msg.text} user={msg.user} room="nodets" />
+        )
+      )}
     </Container>
   );
 };

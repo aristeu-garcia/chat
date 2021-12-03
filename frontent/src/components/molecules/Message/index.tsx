@@ -2,7 +2,7 @@ import React, { useEffect } from "react";
 import { Container } from "./styles";
 import { IMessage } from "../../../interfaces/IMessage";
 import { appSocket } from "../../../api/socket";
-const Message: React.FC<IMessage> = ({ text, user }) => {
+const Message: React.FC<IMessage> = ({ text, user, room }) => {
   let userAuth = localStorage.getItem("@auth/user");
   // useEffect(() => {
   //   const test = appSocket.emit("selected_room", "react");

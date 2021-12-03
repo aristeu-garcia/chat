@@ -7,9 +7,9 @@ import { AiOutlineSend } from "react-icons/ai";
 import logo from "../../../assets/logo.svg";
 import { Link } from "react-router-dom";
 import socketIOClient from "socket.io-client";
-import { setMessages } from "../../../global/Messages";
 import { appSocket } from "../../../api/socket";
 import { IMessage } from "../../../interfaces/IMessage";
+import { Messages } from "../../../global/Messages";
 const Form: React.FC = () => {
   interface IJoin {
     user: string;
@@ -30,7 +30,7 @@ const Form: React.FC = () => {
       (response: any) => {
         console.log("test", response.messages);
 
-        setMessages(response.messages);
+        Messages.setMessages(response.messages as IMessage[]);
         localStorage.setItem("@auth/user", response.user);
       }
     );
