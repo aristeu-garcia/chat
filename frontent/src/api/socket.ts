@@ -1,5 +1,5 @@
 import IO from 'socket.io-client';
-export const appSocket = IO("http://localhost:3333", {
+export const appSocket = IO("http://localhost:4000", {
   secure: false
 });
 

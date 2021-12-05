@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
 import { Container } from "./styles";
 import DropDown from "../../atoms/Select";
 import Input from "../../atoms/Input";
@@ -6,20 +6,9 @@ import Button from "../../atoms/Button";
 import { AiOutlineSend } from "react-icons/ai";
 import logo from "../../../assets/logo.svg";
 import { Link } from "react-router-dom";
-import socketIOClient from "socket.io-client";
 import { appSocket } from "../../../api/socket";
-import { IMessage } from "../../../interfaces/IMessage";
-import { Messages } from "../../../global/Messages";
+import { IOption } from "../../../interfaces/IMessage";
 const Form: React.FC = () => {
-  interface IJoin {
-    user: string;
-    room: string;
-  }
-  interface Option {
-    value: string;
-    label: string;
-  }
-
   function handleSubmit() {
     appSocket.emit(
       "selected_room",
@@ -28,13 +17,9 @@ const Form: React.FC = () => {
         user,
       },
       (response: any) => {
-        console.log("test", response.messages);
-
-        Messages.setMessages(response.messages as IMessage[]);
         localStorage.setItem("@auth/user", response.user);
       }
     );
-    // console.log(messages);
   }
 
   const [user, setUser] = useState<string>("");
@@ -55,7 +40,7 @@ const Form: React.FC = () => {
           { label: "NodeTS", value: "nodets" },
         ]}
         onChange={(e) => {
-          let { value } = e as Option;
+          let { value } = e as IOption;
           setRoom(value);
         }}
       />

@@ -9,7 +9,7 @@ export const Container = styled.input`
   color: #ffff;
   ::placeholder {
     /* Chrome, Firefox, Opera, Safari 10.1+ */
-    color: #FFFF;
+    color: #ffff;
     opacity: 1; /* Firefox */
   }
 `;

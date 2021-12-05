@@ -1,15 +1,8 @@
-import React, { Component } from "react";
-import Select, { Props } from "react-select";
+import React from "react";
+import Select from "react-select";
 import { Container } from "./styles";
 
-interface Option {
-  value: string;
-  label: string;
-}
-
-interface Options extends Props {
-  options: Option[];
-}
+import { IOptions } from "../../../interfaces/IDropDown";
 
 const CustomStyle = {
   option: (base: any, state: { isSelected: boolean }) => ({
@@ -18,7 +11,7 @@ const CustomStyle = {
   }),
 };
 
-const DropDown: React.FC<Options> = ({ options, ...rest }) => (
+const DropDown: React.FC<IOptions> = ({ options, ...rest }) => (
   <Container>
     <Select
       placeholder="Selecione a sala"

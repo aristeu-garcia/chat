@@ -1,49 +1,13 @@
 import { io } from "./http";
-import { Socket } from "socket.io";
+import { IRoomUser, IRoom } from "Interface/ISocket";
 
-interface RoomUser {
-  socket_id: string;
-  username: string;
-  room: string;
-}
-interface Message {
-  room: string;
-  text: string;
-  createdAt: Date;
-  username: string;
-}
+const users: IRoomUser[] = [];
 
-const users: RoomUser[] = [];
-const messages: Message[] = [
-  {
-    room: "react",
-    username: "Aristeu",
-    text: "messagem",
-    createdAt: new Date(),
-  },
-  {
-    room: "react",
-    username: "Aristeu",
-    text: "messagem",
-    createdAt: new Date(),
-  },
-  {
-    room: "nodets",
-    username: "Aristeu",
-    text: "messagem",
-    createdAt: new Date(),
-  },
-  {
-    room: "nodets",
-    username: "Aristeu",
-    text: "messagem",
-    createdAt: new Date(),
-  },
-];
+const NEW_CHAT_MESSAGE_EVENT = "newChatMessage";
+io.on("connection", (socket: any) => {
+  console.log("> Connected");
 
-io.on("connection", (socket: Socket) => {
-  console.log("> Conected on server");
-  socket.on("selected_room", (data, callback) => {
+  socket.on("selected_room", (data: IRoom) => {
     console.log("> The user", data.user, "joy room", data.room);
     socket.join(data.room);
 
@@ -60,34 +24,15 @@ io.on("connection", (socket: Socket) => {
         socket_id: socket.id,
       });
     }
-    const messagesRoom = getMessagesRoom(data.room);
-
-    callback({
-      messages: messagesRoom,
-      user: data.user,
-      room: data.room,
-    });
   });
 
-  socket.on("message", (data) => {
-    const message: Message = {
-      room: data.room,
-      text: data.text,
-      createdAt: data.createdAt,
-      username: data.username,
-    };
-    messages.push(message);
-    io.to(data.room).emit("message");
-    
+  socket.on(NEW_CHAT_MESSAGE_EVENT, (data: any): void => {
+    console.log(data.room);
+    io.in(data.room).emit(NEW_CHAT_MESSAGE_EVENT, data);
   });
-  
+
+  socket.on("disconnect", () => {
+    socket.leave();
+    console.log("> Disconnected");
+  });
 });
-
-function getMessagesRoom(room: string) {
-
-  const messagesRoom = messages.filter((message) => {
-    return message.room === room;
-  });
-
-  return messagesRoom;
-}
