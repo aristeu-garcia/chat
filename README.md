@@ -1,12 +1,13 @@
 # Responsive Chat
+
 ## Screenshots
 
 
 ![Alt text](screenshots/print.jpeg?raw=true  "Title")
+
 ## Description
 
 This project is a chat with ReactTS and NodeTS, using Socket.IO
-
 
 
 ## Current System Functionality
@@ -49,4 +50,6 @@ This project is a chat with ReactTS and NodeTS, using Socket.IO
 ### Run front-end
 ```
     yarn start
+
 ```
+
