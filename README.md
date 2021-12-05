@@ -1,4 +1,10 @@
 # Responsive Chat
+
+## Screenshots
+
+
+![Alt text](screenshots/print.jpeg?raw=true  "Title")
+
 ## Description
 
 This project is a chat with ReactTS and NodeTS, using Socket.IO
@@ -15,7 +21,7 @@ This project is a chat with ReactTS and NodeTS, using Socket.IO
 #### Technologies
 
 - TypeScript
-- NodeJS
+- NodeTS
 - Socket.io
 - React with Styled Components
 
@@ -44,4 +50,6 @@ This project is a chat with ReactTS and NodeTS, using Socket.IO
 ### Run front-end
 ```
     yarn start
+
 ```
+
